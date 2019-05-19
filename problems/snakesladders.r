@@ -148,3 +148,24 @@ for(t in 1:q){
 sum(seq(1,q)*v)
 hist(seq(1,q)*v)
 
+### Zoren
+```{r}
+move <- 0
+count <- replicate(1000, 0)
+game_grid <- data.frame(c(3,6,9,10,14,19,22,24,26,28),c(11,17,18,12,4,8,20,16,5,1))
+for (i in 1:1000) {
+  spot <- 1
+  while (spot <= 25) {
+  move <- sample(1:6, 1)
+  spot <- spot + move
+  for (i in 1:8) {
+    if (spot == game_grid[i,1]) {
+      spot <- game_grid[i,2]
+    }
+  }
+  count[i] = count[i] + 1
+  }
+}
+avg_moves <- mean(count)
+print(avg_moves)
+```
